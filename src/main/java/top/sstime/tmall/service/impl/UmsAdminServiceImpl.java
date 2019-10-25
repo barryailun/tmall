@@ -40,8 +40,8 @@ public class UmsAdminServiceImpl implements UmsAdminService {
     private PasswordEncoder passwordEncoder;
     @Autowired
     private UmsAdminMapper adminMapper;
-//    @Autowired
-//    private UmsAdminRoleRelationDao adminRoleRelationDao;
+    @Autowired
+    private UmsAdminRoleRelationDao adminRoleRelationDao;
     @Value("${jwt.tokenHead}")
     private String tokenHead;
 
@@ -97,7 +97,6 @@ public class UmsAdminServiceImpl implements UmsAdminService {
 
     @Override
     public List<UmsPermission> getPermissionList(Long adminId) {
-        return null;
-//        return adminRoleRelationDao.getPermissionList(adminId);
+        return adminRoleRelationDao.getPermissionList(adminId);
     }
 }
