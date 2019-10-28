@@ -1,9 +1,13 @@
 package top.sstime.tmall.dao.impl;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import top.sstime.tmall.dao.UmsAdminRoleRelationDao;
+import top.sstime.tmall.mbg.mapper.UmsPermissionMapper;
 import top.sstime.tmall.mbg.model.UmsPermission;
+import top.sstime.tmall.mbg.model.UmsPermissionExample;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -13,8 +17,12 @@ import java.util.List;
  */
 @Repository
 public class UmsAdminRoleRelationDaoImpl implements UmsAdminRoleRelationDao {
+    @Autowired
+    private UmsPermissionMapper permissionMapper;
     @Override
     public List<UmsPermission> getPermissionList(Long adminId) {
-        return null;
+        List<UmsPermission> permissionList = new ArrayList<>();
+        permissionList = permissionMapper.selectByExample(new UmsPermissionExample());
+        return permissionList;
     }
 }

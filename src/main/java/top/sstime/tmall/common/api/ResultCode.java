@@ -22,11 +22,11 @@ public enum ResultCode implements IErrorCode{
 
     @Override
     public long getCode() {
-        return 0;
+        return this.code;
     }
 
     @Override
     public String getMessage() {
-        return null;
+        return this.message;
     }
 }

@@ -38,6 +38,7 @@ public class PmsBrandController {
         return CommonResult.success(brandService.listAllBrand());
     }
 
+    @PreAuthorize("hasAuthority('pms:brand:create')")
     @ApiOperation("添加品牌")
     @RequestMapping(value = "/create", method = RequestMethod.POST)
     @ResponseBody
@@ -54,6 +55,22 @@ public class PmsBrandController {
         return commonResult;
     }
 
+    @ApiOperation("删除指定id的品牌")
+    @RequestMapping(value = "/delete/{id}", method = RequestMethod.GET)
+    @ResponseBody
+    @PreAuthorize("hasAuthority('pms:brand:delete')")
+    public CommonResult deleteBrand(@PathVariable("id") Long id) {
+        int count = brandService.deleteBrand(id);
+        if (count == 1) {
+            LOGGER.debug("deleteBrand success :id={}", id);
+            return CommonResult.success(null);
+        } else {
+            LOGGER.debug("deleteBrand failed :id={}", id);
+            return CommonResult.failed("操作失败");
+        }
+    }
+
+    @PreAuthorize("hasAuthority('pms:brand:update')")
     @ApiOperation("更新指定id品牌信息")
     @RequestMapping(value = "/update/{id}", method = RequestMethod.POST)
     @ResponseBody
@@ -68,20 +85,6 @@ public class PmsBrandController {
             LOGGER.debug("updateBrand failed:{}", pmsBrandDto);
         }
         return commonResult;
-    }
-
-    @ApiOperation("删除指定id的品牌")
-    @RequestMapping(value = "/delete/{id}", method = RequestMethod.GET)
-    @ResponseBody
-    public CommonResult deleteBrand(@PathVariable("id") Long id) {
-        int count = brandService.deleteBrand(id);
-        if (count == 1) {
-            LOGGER.debug("deleteBrand success :id={}", id);
-            return CommonResult.success(null);
-        } else {
-            LOGGER.debug("deleteBrand failed :id={}", id);
-            return CommonResult.failed("操作失败");
-        }
     }
 
     @ApiOperation("分页查询品牌列表")

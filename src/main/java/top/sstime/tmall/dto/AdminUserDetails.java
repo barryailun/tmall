@@ -13,7 +13,7 @@ import java.util.stream.Collectors;
 /**
  * @author chenwei
  * @create_time 2019/10/25 11:47
- * @descriptions
+ * @descriptions SpringSecurity需要的用户详情
  */
 public class AdminUserDetails implements UserDetails {
     private UmsAdmin umsAdmin;
@@ -26,6 +26,7 @@ public class AdminUserDetails implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
+        // 返回当前用户的权限
         return permissionList.stream()
                 .filter(permission -> permission.getValue()!=null)
                 .map(permission ->new SimpleGrantedAuthority(permission.getValue()))
