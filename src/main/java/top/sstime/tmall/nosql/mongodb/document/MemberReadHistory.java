@@ -1,5 +1,6 @@
 package top.sstime.tmall.nosql.mongodb.document;
 
+import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -12,6 +13,7 @@ import java.util.Date;
  */
 @Document
 public class MemberReadHistory {
+    @Id
     private String id;
     @Indexed
     private Long memberId;

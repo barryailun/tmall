@@ -1,6 +1,7 @@
 package top.sstime.tmall.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import top.sstime.tmall.nosql.mongodb.document.MemberReadHistory;
 import top.sstime.tmall.nosql.mongodb.repository.MemberReadHistoryRepository;
 import top.sstime.tmall.service.MemberReadHistoryService;
@@ -14,6 +15,7 @@ import java.util.List;
  * @create_time 2019/10/28 15:18
  * @descriptions 会员浏览记录管理Service实现类
  */
+@Service
 public class MemberReadHistoryServiceImpl implements MemberReadHistoryService {
     @Autowired
     private MemberReadHistoryRepository memberReadHistoryRepository;
