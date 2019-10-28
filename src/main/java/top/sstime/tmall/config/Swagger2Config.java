@@ -23,7 +23,7 @@ import java.util.List;
  */
 @Configuration
 @EnableSwagger2
-public class Sagger2Config {
+public class Swagger2Config {
 
     public Docket createRestApi() {
         return new Docket(DocumentationType.SWAGGER_2)
